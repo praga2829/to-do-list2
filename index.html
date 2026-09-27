@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List | Task Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <div class="header-text">
+        <h1>To-Do List</h1>
+        <p class="subtitle">Manage your tasks efficiently</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN APP ===================== -->
+  <main class="container">
+    <section class="todo-card" aria-label="Task manager">
+
+      <!-- Add task area -->
+      <div class="add-task-row">
+        <input
+          type="text"
+          id="taskInput"
+          class="task-input"
+          placeholder="What needs to be done?"
+          maxlength="120"
+          autocomplete="off"
+        >
+        <button id="addTaskBtn" class="add-btn" type="button">
+          <span class="plus-icon">+</span>
+          Add Task
+        </button>
+      </div>
+      <p class="input-error" id="inputError"></p>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <span id="totalCount" class="stat-pill">0 tasks</span>
+        <span id="remainingCount" class="stat-pill stat-pill-accent">0 remaining</span>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-row" id="filterRow" role="group" aria-label="Filter tasks">
+        <button class="filter-btn active-filter" data-filter="all" type="button">All</button>
+        <button class="filter-btn" data-filter="active" type="button">Active</button>
+        <button class="filter-btn" data-filter="completed" type="button">Completed</button>
+      </div>
+
+      <!-- Task list (rendered dynamically by JS) -->
+      <ul class="task-list" id="taskList" aria-live="polite"></ul>
+
+      <!-- Empty state (shown/hidden by JS) -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">📝</div>
+        <p class="empty-title" id="emptyTitle">You're all caught up!</p>
+        <p class="empty-subtitle" id="emptySubtitle">Add a task above to get started.</p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ===================== DELETE CONFIRM MODAL ===================== -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+      <h3>Delete this task?</h3>
+      <p>This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-cancel" id="cancelDeleteBtn" type="button">Cancel</button>
+        <button class="modal-btn modal-btn-danger" id="confirmDeleteBtn" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="app-footer">
+    <p>Built with HTML, CSS &amp; vanilla JavaScript &middot; Data is saved in your browser's localStorage</p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
